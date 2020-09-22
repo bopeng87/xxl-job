@@ -6,7 +6,7 @@ ENV PARAMS=""
 
 ENV TZ=PRC
 
-ADD target/xxl-job-admin-*.jar /app.jar
+ADD xxl-job-admin/target/xxl-job-admin-*.jar /app.jar
 
 COPY xxl-job-admin-0.0.1-SNAPSHOT.jar ./
 
