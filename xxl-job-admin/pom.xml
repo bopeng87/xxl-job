@@ -74,6 +74,13 @@
 			<version>2.2.0</version>
 		</dependency>
 
+		<!--   logstash日志组件     -->
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>6.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
