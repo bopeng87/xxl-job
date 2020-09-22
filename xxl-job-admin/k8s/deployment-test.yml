@@ -19,7 +19,7 @@ metadata:
   annotations:
     kubernetes.io/change-cause: registry.cn-beijing.aliyuncs.com/lemonbox/xxl-job-admin:{{GIT_COMMIT}}
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: xxl-job-admin-test
