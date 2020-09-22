@@ -23,9 +23,9 @@ pipeline {
         steps {
             script {
             FAILED_STAGE=env.STAGE_NAME
-                sh "mvn clean install -Dmaven.test.skip=true"
+                sh "mvn -U clean install -pl xxl-job-admin -am -Dmaven.test.skip=true"
                 // 拷贝到容器外
-                sh "cp target/xxl-job-admin-0.0.1-SNAPSHOT.jar " + parentWorkspace +"/xxl-job-admin-0.0.1-SNAPSHOT.jar"
+                sh "cp xxl-job-admin/target/xxl-job-admin-0.0.1-SNAPSHOT.jar " + parentWorkspace +"/xxl-job-admin/xxl-job-admin-0.0.1-SNAPSHOT.jar"
             }
         }
     }
@@ -57,11 +57,11 @@ pipeline {
 
           if (env.GIT_BRANCH == "origin/master") {
             sh "kubectl config use aws_nx_data"
-            sh "cat k8s/deployment.yml | sed 's/{{GIT_COMMIT}}/$GIT_COMMIT/g' | kubectl apply -f -"
+            sh "cat xxl-job-admin/k8s/deployment.yml | sed 's/{{GIT_COMMIT}}/$GIT_COMMIT/g' | kubectl apply -f -"
             sh "kubectl rollout status deployment/xxl-job-admin"
           } else {
             sh "kubectl config use test"
-            sh "cat k8s/deployment-test.yml | sed 's/{{GIT_COMMIT}}/$GIT_COMMIT/g' | kubectl apply -f -"
+            sh "cat xxl-job-admin/k8s/deployment-test.yml | sed 's/{{GIT_COMMIT}}/$GIT_COMMIT/g' | kubectl apply -f -"
             sh "kubectl rollout status deployment/xxl-job-admin-test"
           }
         }
