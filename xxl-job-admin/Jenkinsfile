@@ -33,7 +33,7 @@ pipeline {
       steps {
         script {
           FAILED_STAGE=env.STAGE_NAME
-          docker.build(registry)
+          docker.build(registry, "./xxl-job-admin/Dockerfile")
         }
       }
     }
